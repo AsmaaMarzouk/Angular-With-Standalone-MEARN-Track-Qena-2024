@@ -25,7 +25,10 @@
 <div class="row">
   <!-- @for(product of productsList;track product.id){ -->
   @for(product of productsAfterFilter;track product.id){
-  <div class="col-md-4 mb-4">
+
+    <!-- Day4 -->
+  <!-- <div class="col-md-4 mb-4" (click)="goPrdDetails(product.id)"> -->
+    <div class="col-md-4 mb-4" [routerLink]="['/Prd',product.id]">
     <!-- <img src="{{product.PrdimgURL}}" class="img-fluid"> -->
     @if(showImg){
     <!-- <img [src]="product.PrdimgURL" [class.border]="product.quantity==0" class="img-fluid" > -->

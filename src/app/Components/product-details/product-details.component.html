@@ -1,0 +1,23 @@
+
+<!-- <div class="row mb-5">
+  <div class="col-md-6">
+    <img [src]="product?.PrdimgURL" class="img-fluid">
+  </div>
+  <div class="col-md-6">
+    <h2>{{product?.name}}</h2>
+  </div>
+</div> -->
+
+@if(product){
+<div class="row mb-5">
+  <div class="col-md-6">
+    <img [src]="product.PrdimgURL" class="img-fluid">
+  </div>
+  <div class="col-md-6">
+    <h2>{{product.name}}</h2>
+    <h3>Price: {{product.price}}</h3>
+    <h3>Material: {{product.Material}}</h3>
+    <h6>Details: {{product.details}}</h6>
+  </div>
+</div>
+}
