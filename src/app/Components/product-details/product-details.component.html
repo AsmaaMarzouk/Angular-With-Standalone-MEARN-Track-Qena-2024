@@ -1,4 +1,25 @@
+<!-- Day6 -->
+<div class="col-md-5 mx-auto mb-3">
+  <div class="small fw-light">search with materail</div>
+  <div class="input-group">
+    <!-- template reference => #nameOfRef -->
+    <input class="form-control border-end-0 border rounded-pill" type="text" id="example-search-input" #inputVal>
+    <span class="input-group-append">
+      <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" type="button"
+        (click)="searchMat(inputVal.value)">
+        <i class="fa fa-search"></i>
+      </button>
+    </span>
+  </div>
+</div>
 
+<ul>
+  @for (item of searchResult; track $index) {
+
+  <li>{{$index+1}}: {{item.name}}</li>
+  }
+</ul>
+<!-- ####################################### -->
 <!-- <div class="row mb-5">
   <div class="col-md-6">
     <img [src]="product?.PrdimgURL" class="img-fluid">
@@ -21,3 +42,11 @@
   </div>
 </div>
 }
+
+
+<div class="d-flex justify-content-center" role="group" aria-label="Basic example">
+  <button class="border-0" (click)="prevFunc()" [disabled]="currentProductID==IDs[0]"><i
+      class="fa-solid fa-angles-left fs-4 text-primary"></i></button>
+  <button class="border-0" (click)="nextFunc()" [disabled]="currentProductID==IDs[IDs.length-1]"><i
+      class="fa-solid fa-angles-right fs-4"></i></button>
+</div>

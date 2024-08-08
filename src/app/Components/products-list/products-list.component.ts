@@ -6,11 +6,18 @@ import { CalcDiscountPipe } from '../../Pipes/calc-discount.pipe';
 import { ImgStyleDirective } from '../../Directives/img-style.directive';
 import { ProductsService } from '../../Services/products.service';
 import { Router, RouterModule } from '@angular/router';
+import { ProductsWithApiService } from '../../Services/products-with-api.service';
 
 @Component({
   selector: 'app-products-list',
   standalone: true,
-  imports: [FormsModule, CommonModule, CalcDiscountPipe, ImgStyleDirective,RouterModule],
+  imports: [
+    FormsModule,
+    CommonModule,
+    CalcDiscountPipe,
+    ImgStyleDirective,
+    RouterModule,
+  ],
   templateUrl: './products-list.component.html',
   styleUrl: './products-list.component.scss',
 })
@@ -31,7 +38,21 @@ export class ProductsListComponent {
     //  console.log(this.productsAfterFilter);
 
     // Day4
-    this.productsAfterFilter = this.Productservice.performFilter(value);
+    // this.productsAfterFilter = this.Productservice.performFilter(value);
+
+    // Day6
+
+    this.productswitApi.getAllproducts().subscribe({
+      next: (data) => {
+        this.productsAfterFilter=data.filter(product =>product.name.toLowerCase().includes(value))
+      },
+      error: (err) => {
+        console.log(err);
+
+      },
+    });
+
+    // #################################
   }
 
   @Output() newprdEventAtCart = new EventEmitter<Iproduct>();
@@ -41,7 +62,11 @@ export class ProductsListComponent {
   // caetgoryID// 1-tables   2-chairs  3-tv unit
 
   // Day4 => inject service
-  constructor(private Productservice: ProductsService,private router:Router) {
+  constructor(
+    private Productservice: ProductsService,
+    private router: Router,
+    private productswitApi: ProductsWithApiService
+  ) {
     // this.productsList = [
     //   {
     //     id: 1,
@@ -140,7 +165,19 @@ export class ProductsListComponent {
     // this.productsAfterFilter=this.productsList;
 
     // Day4
-    this.productsAfterFilter = this.Productservice.getAllProducts();
+    // this.productsAfterFilter = this.Productservice.getAllProducts();
+
+    // Day6
+
+    // lazy => subscribe
+    this.productswitApi.getAllproducts().subscribe({
+      next: (prds) => {
+        this.productsAfterFilter = prds;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
   // performFilter(filterValue: string): Iproduct[] {
   //   filterValue = filterValue.toLowerCase();
@@ -162,8 +199,7 @@ export class ProductsListComponent {
     this.newprdEventAtCart.emit(prd);
   }
 
-  goPrdDetails(prdid:number) {
-
-    this.router.navigate(['/Prd',prdid]);
+  goPrdDetails(prdid: number) {
+    this.router.navigate(['/Prd', prdid]);
   }
 }

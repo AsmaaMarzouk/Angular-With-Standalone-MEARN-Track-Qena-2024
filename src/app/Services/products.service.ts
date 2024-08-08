@@ -133,4 +133,8 @@ export class ProductsService {
   getPrdByID(Prdid: number): Iproduct | undefined {
     return this.productsList.find((prd) => prd.id == Prdid);
   }
+
+  getPrdIDs():number[] {
+    return this.productsList.map(prd=>prd.id)
+  }
 }
