@@ -7,6 +7,9 @@ import { GroupOfRoutesComponent } from './Components/group-of-routes/group-of-ro
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 import { ObsAndOperatorsComponent } from './Components/obs-and-operators/obs-and-operators.component';
 import { UserTemplateFormComponent } from './Components/User/user-template-form/user-template-form.component';
+import { UserAuthenComponent } from './Components/user-authen/user-authen.component';
+import { userGuard } from './Guards/user.guard';
+import { UserReactiveFormComponent } from './Components/User/user-reactive-form/user-reactive-form.component';
 
 // first case
 export const routes: Routes = [
@@ -14,12 +17,15 @@ export const routes: Routes = [
   // default path
   // {path:'',component:MainHomeComponent},
   {path:'',redirectTo:'Home',pathMatch:'full'},
-  {path:'Home',component:MainHomeComponent,title:"Home Page"},
+  {path:'Home',component:MainHomeComponent,title:"Home Page",canActivate:[userGuard]},
   {path:'Products',component:ProductsListComponent,title:"Products Page"},
-  {path:'ProductsParent',component:ProductsParentComponent,title:"Products parent Page"},
+  {path:'ProductsParent',component:ProductsParentComponent,title:"Products parent Page",canActivate:[userGuard]},
   {path:'Prd/:productID',component:ProductDetailsComponent,title:"Products Details Page"},
   {path:'Obs',component:ObsAndOperatorsComponent,title:"Observ Page"},
   {path:'UserTemplate',component:UserTemplateFormComponent,title:"User SignUp"},
+  {path:'UserReactive',component:UserReactiveFormComponent,title:"User SignUp"},
+  {path:'User',component:UserAuthenComponent,title:"User Auth"},
+  {path:'UserLogout',component:UserAuthenComponent,title:"User Auth"},
   // not found page => wildcard path
   {path:'**',component:NotFoundPageComponent,title:"Not found Page"},
 

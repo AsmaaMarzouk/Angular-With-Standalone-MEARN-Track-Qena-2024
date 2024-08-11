@@ -17,6 +17,9 @@
                   <li class="nav-tab"><a routerLink="ProductsParent" routerLinkActive="linkActive">ProductsParent</a></li>
                   <li class="nav-tab"><a routerLink="Obs" routerLinkActive="linkActive">ObsAndOperators</a></li>
                   <li class="nav-tab"><a routerLink="UserTemplate" routerLinkActive="linkActive">User Template</a></li>
+                  <li class="nav-tab"><a routerLink="UserReactive" routerLinkActive="linkActive">User Reactive</a></li>
+                  <li class="nav-tab"><a routerLink="User" routerLinkActive="linkActive" [hidden]="userLogg">User Login</a></li>
+                  <li class="nav-tab"><a routerLink="UserLogout" routerLinkActive="linkActive" [hidden]="!userLogg">User Logout</a></li>
               </ul>
           </div>
       </nav>
